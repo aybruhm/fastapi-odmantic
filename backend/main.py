@@ -36,9 +36,7 @@ def create_application() -> FastAPI:
         allow_methods=secrets.ALLOWED_METHODS.split(","),
         allow_headers=secrets.ALLOWED_HEADERS,
     )
-    application.add_middleware(
-        SessionMiddleware, secret_key=secrets.JWT_SECRET_KEY
-    )
+    application.add_middleware(SessionMiddleware, secret_key=secrets.JWT_SECRET_KEY)
 
     @application.get(
         "/",

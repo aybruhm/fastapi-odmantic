@@ -35,7 +35,7 @@ async def create_account(payload: UserCreateDTO) -> JSONResponse:
        payload (UserCreateDTO): required payload
 
     Returns:
-        data: the newly created user account
+            data: the newly created user account
     """
 
     ngo_account = await setup_user_account(payload)
@@ -55,7 +55,7 @@ async def login_account(payload: UserLoginDTO) -> JSONResponse:
        payload (UserLoginDTO): required payload
 
     Returns:
-        data: user account data and jwt token
+            data: user account data and jwt token
     """
 
     jwt_token = await login_user_account(payload.email, payload.password)
@@ -70,7 +70,7 @@ async def recover_account(payload: UserAccountRecoverDTO) -> JSONResponse:
        payload (UserAccountRecoverDTO): required payload
 
     Returns:
-        data: confirmation message
+            data: confirmation message
     """
 
     await recover_user_account(payload.email)
@@ -91,7 +91,7 @@ async def recover_account_resend_otp(
        payload (UserAccountRecoverDTO): required payload
 
     Returns:
-        data: confirmation message
+            data: confirmation message
     """
 
     otp_resent = await resend_otp_code(payload.email)
@@ -113,7 +113,7 @@ async def recover_account_verify_otp(
        payload (UserAccountRecoverConfirmDTO): required payload
 
     Returns:
-        data: confirmation message
+            data: confirmation message
     """
 
     otp_verified = await verify_otp_code(payload.email, payload.otp_code)
@@ -135,10 +135,8 @@ async def recover_account_complete(
        payload (UserAccountRecoverCompleteDTO): required payload
 
     Returns:
-        data: confirmation message
+            data: confirmation message
     """
 
     await complete_recover_account(payload.email, payload.password)
-    return JSONResponse(
-        {"message": "Account recovery successfully completed!"}
-    )
+    return JSONResponse({"message": "Account recovery successfully completed!"})

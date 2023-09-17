@@ -13,7 +13,7 @@ from pydantic import BaseModel, EmailStr, HttpUrl, Field
 
 
 class UserCreateDTO(UserSetupDTO):
-    pass # add extra fields
+    pass  # add extra fields
 
 
 class UserLoginDTO(BaseModel):

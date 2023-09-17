@@ -29,9 +29,7 @@ class Settings(BaseSettings):
     # JWT configuration
     JWT_SECRET_KEY: str = environ("JWT_SECRET_KEY", cast=str)
     JWT_ALGORITHM: str = environ("JWT_ALGORITHM", cast=str)
-    JWT_ACCESS_TOKEN_EXPIRES: int = environ(
-        "JWT_ACCESS_TOKEN_EXPIRES", cast=int
-    )
+    JWT_ACCESS_TOKEN_EXPIRES: int = environ("JWT_ACCESS_TOKEN_EXPIRES", cast=int)
 
     # database configuration
     USE_TEST_DB: bool = False
@@ -42,12 +40,11 @@ class Settings(BaseSettings):
     EMAIL_HOST_TOKEN: str = environ("EMAIL_HOST_TOKEN", cast=str)
     EMAIL_OTP_TIMEOUT: int = environ("EMAIL_OTP_TIMEOUT", cast=int)
     EMAIL_HOST_SENDER: str = environ("EMAIL_HOST_SENDER", cast=str)
-    
+
     # Cloudinary configuration
     CLOUDINARY_NAME: str = environ("CLOUDINARY_NAME", cast=str)
     CLOUDINARY_API_KEY: str = environ("CLOUDINARY_API_KEY", cast=str)
     CLOUDINARY_API_SECRET: str = environ("CLOUDINARY_API_SECRET", cast=str)
-
 
 
 @lru_cache(maxsize=None)

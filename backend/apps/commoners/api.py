@@ -26,7 +26,6 @@ router = APIRouter(tags=["Commoners"], prefix="/commoners")
 BYTES_SIZE: int = 1000000
 
 
-
 @router.post("/upload/")
 async def upload_image(
     tasks: BackgroundTasks, file_in_memory: UploadFile = File(...)
@@ -62,7 +61,9 @@ async def upload_image(
     upload_url = await asyncify(file_uploader.upload_file)(file_path)
 
     # remove uploaded files from the parent directory
-    tasks.add_task(remove_file_from_root_directory, f"{parent_directory}{image_directory}")
+    tasks.add_task(
+        remove_file_from_root_directory, f"{parent_directory}{image_directory}"
+    )
 
     return JSONResponse(
         {

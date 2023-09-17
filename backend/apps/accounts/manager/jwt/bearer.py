@@ -18,7 +18,7 @@ class JWTBearer(HTTPBearer):
         False, the middleware will return a 401 response, defaults to True
         :type auto_error: bool (optional)
         """
-        
+
         super(JWTBearer, self).__init__(auto_error=auto_error)
 
     async def __call__(self, request: Request):
@@ -32,7 +32,7 @@ class JWTBearer(HTTPBearer):
         :return: The token
         :rtype: str
         """
-        
+
         authorization_credentials = await super(JWTBearer, self).__call__(request)
 
         if authorization_credentials:

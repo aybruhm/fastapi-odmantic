@@ -56,13 +56,9 @@ class JWTAuthHandler:
         payload = {
             "user_id": user_id,
             "user_email": user_email,
-            "expires": str(
-                datetime.now() + timedelta(minutes=self.TOKEN_LIFETIME)
-            ),
+            "expires": str(datetime.now() + timedelta(minutes=self.TOKEN_LIFETIME)),
         }
-        token = jwt.encode(
-            payload, self.JWT_SECRET, algorithm=self.JWT_ALGORITHM
-        )
+        token = jwt.encode(payload, self.JWT_SECRET, algorithm=self.JWT_ALGORITHM)
         return token
 
     def decode_jwt(self, token: str) -> Dict[str, Any]:

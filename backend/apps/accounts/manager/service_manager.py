@@ -83,7 +83,7 @@ async def recover_user_account(email: str) -> bool:
     sent = await em.send(
         subject="[ACCOUNT RECOVERY]: Confirmation of Account Ownership",
         content=f"Hello {account.first_name},\n\nKindly use the OTP code ({otp_code}) to recover your account",
-        provider="mailtrap"
+        provider="mailtrap",
     )
     return sent
 
@@ -115,7 +115,7 @@ async def resend_otp_code(email: str) -> bool:
     sent = await em.send(
         subject="[ACCOUNT RECOVERY]: Confirmation of Account Ownership",
         content=f"Hello {account.first_name},\n\nKindly use the OTP code ({otp_code}) to recover your account",
-        provider="mailtrap"
+        provider="mailtrap",
     )
     return sent
 
@@ -174,4 +174,3 @@ async def complete_recover_account(email: str, password: str):
         email,
         **{"password": hashed_password, "date_modified": datetime.utcnow()},
     )
-
