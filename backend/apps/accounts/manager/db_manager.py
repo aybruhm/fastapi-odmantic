@@ -6,11 +6,11 @@ from fastapi import HTTPException
 
 # Own Imports
 from config.database import engine
-from apps.accounts.dto.mentor_dto import MentorCreateDTO
+from apps.accounts.dto.user_dto import UserCreateDTO
 from apps.accounts.models.accounts import User, OTPTimeout
 
 
-async def setup_user_account(payload: MentorCreateDTO) -> User:
+async def setup_user_account(payload: UserCreateDTO) -> User:
     """
     Responsible for creating a user account.
     """
