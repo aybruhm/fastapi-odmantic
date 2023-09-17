@@ -81,7 +81,7 @@ async def recover_account(payload: UserAccountRecoverDTO) -> JSONResponse:
     )
 
 
-@router.post("/recover/resend-otp/")
+@router.post("/recover/resend/")
 async def recover_account_resend_otp(
     payload: UserAccountRecoverDTO,
 ) -> JSONResponse:
@@ -103,7 +103,7 @@ async def recover_account_resend_otp(
     )
 
 
-@router.post("/recover/verify-otp/")
+@router.post("/recover/verify/")
 async def recover_account_verify_otp(
     payload: UserAccountRecoverConfirmDTO,
 ) -> JSONResponse:
