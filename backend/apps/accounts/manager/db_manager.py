@@ -6,7 +6,7 @@ from fastapi import HTTPException
 
 # Own Imports
 from config.database import engine
-from apps.accounts.dto.user_dto import UserCreateDTO
+from apps.accounts.dto.users_dto import UserCreateDTO
 from apps.accounts.models.accounts import User, OTPTimeout
 
 

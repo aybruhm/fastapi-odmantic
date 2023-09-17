@@ -6,7 +6,7 @@ from fastapi import APIRouter
 from fastapi.responses import JSONResponse
 
 # Own Imports
-from apps.accounts.dto.user_dto import (
+from apps.accounts.dto.users_dto import (
     UserCreateDTO,
     UserLoginDTO,
     UserAccountRecoverDTO,
