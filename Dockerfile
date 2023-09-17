@@ -14,4 +14,4 @@ RUN --mount=type=cache,target=/root/.cache \
     pip install -r /requirements.txt
 
 # set working directory
-WORKDIR /natini-be
+WORKDIR /backend

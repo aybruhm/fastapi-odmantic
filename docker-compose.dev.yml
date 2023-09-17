@@ -13,9 +13,9 @@ services:
     ports:
       - "6000:6000"
     env_file:
-      - ./.env.dev
+      - ./.env
     environment: 
-      MONGODB_URI: mongodb://username:password@db:27017
+      MONGODB_URI: mongodb://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@db:27017
     depends_on:
       db:
         condition: service_healthy
@@ -23,9 +23,11 @@ services:
   db:
     image: mongo:5.0
     container_name: backend_mongodb
+    env_file:
+      - ./.env
     environment:
-      MONGO_INITDB_ROOT_USERNAME: username
-      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_ROOT_USERNAME: ${MONGODB_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_PASSWORD}
     volumes:
       - mongodb_data:/data/db
     ports:
@@ -39,9 +41,11 @@ services:
   db_admin:
     image: mongo-express
     container_name: backend_mongodb_express
+    env_file:
+      - ./.env
     environment:
-      ME_CONFIG_MONGODB_ADMINUSERNAME: username
-      ME_CONFIG_MONGODB_ADMINPASSWORD: password
+      ME_CONFIG_MONGODB_ADMINUSERNAME: ${MONGODB_ADMIN_USERNAME}
+      ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGODB_ADMIN_PASSWORD}
       ME_CONFIG_MONGODB_SERVER: db
     ports:
       - "5001:8081"
