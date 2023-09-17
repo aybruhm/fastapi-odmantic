@@ -12,7 +12,7 @@ services:
     volumes:
       - .:/backend
     ports:
-      - "6000:80"
+      - "2555:80"
     env_file:
       - ./.env
     environment: 
