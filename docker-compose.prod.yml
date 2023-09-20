@@ -1,0 +1,58 @@
+version: "3.9"
+
+services:
+
+  backend:
+    build: 
+      context: ./
+      dockerfile: Dockerfile
+    container_name: backend_api
+    command: "python backend/server/prod.py"
+    restart: always
+    volumes:
+      - ./:/template_be/
+    ports:
+      - "80:80"
+    env_file:
+      - ./.env
+    environment: 
+      MONGODB_URI: mongodb://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@db:27017
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: mongo:5.0
+    container_name: backend_mongodb
+    env_file:
+      - ./.env
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGODB_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_PASSWORD}
+    volumes:
+      - mongodb_data:/data/db
+    ports:
+      - "27017:27017"
+    healthcheck:
+      test: [ "CMD", "mongo", "--eval", "db.adminCommand('ping')" ]
+      interval: 10s
+      timeout: 10s
+      retries: 20
+
+  db_admin:
+    image: mongo-express
+    container_name: backend_mongodb_express
+    env_file:
+      - ./.env
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: ${MONGODB_ADMIN_USERNAME}
+      ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGODB_ADMIN_PASSWORD}
+      ME_CONFIG_MONGODB_SERVER: db
+    ports:
+      - "8102:8081"
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  mongodb_data:

@@ -7,10 +7,10 @@ services:
       context: ./
       dockerfile: Dockerfile
     container_name: backend_api
-    command: "uvicorn backend/main:create_application --host 0.0.0.0 --port 80 --reload"
+    command: "python backend/server/dev.py"
     restart: always
     volumes:
-      - .:/backend
+      - ./:/template_be/
     ports:
       - "2555:80"
     env_file:
@@ -32,7 +32,7 @@ services:
     volumes:
       - mongodb_data:/data/db
     ports:
-      - "45045:27017"
+      - "45048:27017"
     healthcheck:
       test: [ "CMD", "mongo", "--eval", "db.adminCommand('ping')" ]
       interval: 10s
@@ -49,7 +49,7 @@ services:
       ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGODB_ADMIN_PASSWORD}
       ME_CONFIG_MONGODB_SERVER: db
     ports:
-      - "5001:8081"
+      - "5008:8081"
     depends_on:
       db:
         condition: service_healthy
