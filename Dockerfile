@@ -14,4 +14,10 @@ RUN --mount=type=cache,target=/root/.cache \
     pip install -r /requirements.txt
 
 # set working directory
-WORKDIR /backend
+WORKDIR /template_be
+
+# Set python path to working directory in docker
+ENV PYTHONPATH=/template_be/backend/
+
+# Copy current directory to working directory in docker
+COPY ./ /template_be/
