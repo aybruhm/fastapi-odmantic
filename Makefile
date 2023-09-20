@@ -5,13 +5,13 @@ up_dev:
 	docker compose -f "docker-compose.dev.yml" up -d
 
 run_dev:
-	docker compose -f "docker-compose.dev.yml" up --build
+	docker compose -f "docker-compose.dev.yml" up -d --build
 
 run_prod:
-	docker compose -f "docker-compose.prod.yml" up --build
+	docker compose -f "docker-compose.prod.yml" up -d --build
 
 down_dev:
-	docker compose -f "docker-compose.dev.yml" dow
+	docker compose -f "docker-compose.dev.yml" down
 
 freeze_deps:
 	pipenv requirements > requirements.txt
