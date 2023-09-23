@@ -22,11 +22,7 @@ async def setup_user_account(payload: UserCreateDTO) -> User:
 
     # Initialize user account instance
     user = User(
-        first_name=payload.first_name,
-        last_name=payload.last_name,
-        primary_email=payload.primary_email,
-        password=payload.password,
-        country_code=payload.country_code,
+        **payload.dict(),
         date_created=datetime.utcnow(),
     )
 
